@@ -3,7 +3,7 @@ name: Sync to Copy Repo
 on:
   push:
     branches:
-      - main  # Or any other branch you want to sync
+      - main
 
 jobs:
   sync:
@@ -20,9 +20,24 @@ jobs:
         git config --global user.name "vinaypbn  "
         git config --global user.email "vinay.pbn@gmail.com"
       
-    - name: Push to copy repository
+    - name: Copy file and push to copy repository
       env:
         PAT: ${{ secrets.PAT }}
       run: |
-        git remote add copy https://${{ secrets.PAT }}@github.com/pbnvinay/copy.git
-        git push copy --mirror
+        # Replace these variables with the paths to your specific files
+        ORIGINAL_FILE=orginal.txt
+        COPY_FILE=copy.txt
+
+        # Clone the copy repository
+        git clone https://${{ secrets.PAT }}@github.com/pbnvinay/copy.git
+        
+        # Copy the file from the original repository to the copy repository
+        cp $ORIGINAL_FILE copy/$COPY_FILE
+        
+        # Change to the copy repository directory
+        cd copy
+        
+        # Commit and push changes to the copy repository
+        git add $COPY_FILE
+        git commit -m "Sync changes from original repository"
+        git push origin main
