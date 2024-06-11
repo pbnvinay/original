@@ -24,15 +24,28 @@ jobs:
       env:
         PAT: ${{ secrets.PAT }}
       run: |
-        # Replace these variables with the paths to your specific files
-        ORIGINAL_FILE=orginal.txt
-        COPY_FILE=copy.txt
+        # Clone the first original repository
+        git clone https://${{ secrets.PAT }}@github.com/pbnvinay/original.git
+        cp original/orginal.txt .
 
+        # Clone the first original repository
+        git clone https://${{ secrets.PAT }}@github.com/pbnvinay/original1.git
+        cp original1/orginal1.txt .
+
+    - name: Combine files
+      run: |
+        # Combine contents of original files
+        cat orginal.txt orginal1.txt > combined.txt
+  
+    - name: Push to copy repository
+      env:
+        PAT: ${{ secrets.PAT }}
+      run: |
         # Clone the copy repository
         git clone https://${{ secrets.PAT }}@github.com/pbnvinay/copy.git
         
-        # Copy the file from the original repository to the copy repository
-        cp $ORIGINAL_FILE copy/$COPY_FILE
+        # Move combined file to copy repository
+        mv combined.txt copy/copy.txt
         
         # Change to the copy repository directory
         cd copy
