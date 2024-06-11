@@ -26,7 +26,7 @@ jobs:
       run: |
         # Clone the first original repository
         git clone https://${{ secrets.PAT }}@github.com/pbnvinay/original.git
-        cp original/orginal.txt .
+        cp original/original.txt .
 
         # Clone the first original repository
         git clone https://${{ secrets.PAT }}@github.com/pbnvinay/original1.git
