@@ -30,7 +30,7 @@ jobs:
 
         # Clone the first original repository
         git clone https://${{ secrets.PAT }}@github.com/pbnvinay/original1.git
-        cp original1/orginal1.txt .
+        cp original1/original1.txt .
 
     - name: Combine files
       run: |
