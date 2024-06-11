@@ -35,7 +35,7 @@ jobs:
     - name: Combine files
       run: |
         # Combine contents of original files
-        cat orginal.txt orginal1.txt > combined.txt
+        cat original.txt original1.txt > combined.txt
   
     - name: Push to copy repository
       env:
