@@ -1,9 +1,9 @@
 name: Sync to Copy Repo
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '*/1 * * * *'  # Runs every minute
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   sync:
