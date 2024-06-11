@@ -51,6 +51,6 @@ jobs:
         cd copy
         
         # Commit and push changes to the copy repository
-        git add $COPY_FILE
+        git add copy.txt
         git commit -m "Sync changes from original repository"
         git push origin main
