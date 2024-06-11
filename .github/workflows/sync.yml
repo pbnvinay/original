@@ -1,0 +1,28 @@
+name: Sync to Copy Repo
+
+on:
+  push:
+    branches:
+      - main  # Or any other branch you want to sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "vinaypbn  "
+        git config --global user.email "vinay.pbn@gmail.com"
+      
+    - name: Push to copy repository
+      env:
+        PAT: ${{ secrets.PAT }}
+      run: |
+        git remote add copy https://${{ secrets.PAT }}@github.com/pbnvinay/copy.git
+        git push copy --mirror
