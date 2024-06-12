@@ -2,7 +2,8 @@ name: Sync to Copy Repo
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Runs every minute
+    - cron: '0 0 * * *'  # Runs every 24 hours at midnight
+
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
